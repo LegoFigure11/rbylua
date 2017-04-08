@@ -3,7 +3,7 @@ local base_address
 local atkdef
 local spespc
 
-        print("RBGY Stationary Bot by zep715")
+        print("RBGY Gift Bot by zep715")
         print("Optimised/Edited by LegoFigure11 | Available at http://spo.ink/gen1bot")
 
 if version == 0xc1a2 or version == 0x36dc or version == 0xd5dd or version == 0x299c then

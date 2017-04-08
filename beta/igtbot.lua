@@ -3,6 +3,10 @@ local base_address
 local atkdef
 local spespc
 
+        print("RBGY In-Game Trade Bot by zep715")
+        print("Optimised/Edited by LegoFigure11 | Available at http://spo.ink/gen1bot")
+
+
 if version == 0xc1a2 or version == 0x36dc or version == 0xd5dd or version == 0x299c then
 	print("RBGY JPN game detected")
   base_address = 0xd123
@@ -23,6 +27,7 @@ else
   print("script stopped")
   return
 end
+        print("Bot in progress, please wait...")
 
 local partyno = memory.readbyte(base_address)-1
 local dv_addr = (base_address+0x23)+partyno*0x2C
@@ -62,8 +67,6 @@ while true do
         atkdef = memory.readbyte(dv_addr)
         spespc = memory.readbyte(dv_addr+1)
     end
-	print(atkdef)
-	print(spespc)
     if shiny(atkdef,spespc) then
         print("Shiny!!! Script stopped.")
         print(string.format("Atk: %d", math.floor(atkdef/16)))
@@ -73,7 +76,6 @@ while true do
         savestate.save(state)
         break
     else
-		print("discarded")
         savestate.load(state)
     end
    

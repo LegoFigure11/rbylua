@@ -17,7 +17,7 @@ elseif version == 0x7c04 then
 	print("Yellow USA detected")
   base_address = 0xcff0
 elseif version == 0xd289 or version == 0x9c5e or version == 0xdc5c or version == 0xbc2e or version == 0x4a38 or version == 0xd714 or version == 0xfc7a or version == 0xa456 then
-	print("RRB EUR detected")
+	print("RB EUR detected")
   base_address = 0xcff6
 elseif version == 0x8f4e or version == 0xfb66 or version == 0x3756 or version == 0xc1b7 then
 	print("Yellow EUR detected")

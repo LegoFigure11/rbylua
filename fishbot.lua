@@ -1,15 +1,118 @@
--- v0.1 fishbot
---set up species, look for serebii for fishable pokemon in your area and look 
---http://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_index_number_(Generation_I)
---for index number in decimal and set in target
---example horsea
---local target = 92
-local target = 
+--Set your target species below encased between two "
+--Example target_species = "Tentacool"
 
---da confermare per giallo e rbg/giapponesi
+target_species = ""
+
+
 local a_flagbite = 0xcd3d
 s = 1
 q = 1
+
+if target_species=="Tentacool" then
+target = 24
+else
+ if target_species=="Shellder" then
+ target = 23
+ else
+  if target_species=="Slowbro" then
+  target = 8
+  else
+   if target_species=="Lapras" then
+   target = 19
+   else
+    if target_species=="Gyarados" then
+    target = 22
+    else
+     if target_species=="Staryu" then
+     target = 27
+     else
+      if target_species=="Slowpoke" then
+      target = 37
+      else
+       if target_species=="Psyduck" then
+       target = 47
+       else
+        if target_species=="Seel" then
+        target = 58
+        else
+         if target_species=="Dragonite" then
+         target = 66
+         else
+          if target_species=="Poliwag" then
+          target = 71
+          else
+           if target_species=="Krabby" then
+           target = 78
+           else
+            if target_species=="Dratini" then
+            target = 88
+            else
+             if target_species=="Dragonair" then
+             target = 89
+             else
+              if target_species=="Horsea" then
+              target = 92
+              else
+               if target_species=="Seadra" then
+               target = 93
+               else
+                if target_species=="Poliwhirl" then
+                target = 110
+                else
+                 if target_species=="Dewgong" then
+                 target = 128
+                 else
+                  if target_species=="Golduck" then
+                  target = 128
+                  else
+                   if target_species=="Magikarp" then
+                   target = 133
+                   else
+                    if target_species=="Kingler" then
+                    target = 138
+                    else
+                     if target_species=="Cloyster" then
+                     target = 139
+                     else
+                     if target_species=="Starmie" then
+                     target = 152
+                     else
+                      if target_species=="Tentacruel" then
+                      target = 155
+                      else
+                       if target_species=="Goldeen" then
+                       target = 157
+                       else
+                        if target_species=="Seaking" then
+                        target = 158
+                        else
+                         target = nil
+                         end
+                        end
+                       end
+                      end
+                     end
+                    end
+                   end
+                  end
+                 end
+                end
+               end
+              end 
+             end
+            end
+           end
+          end
+         end
+        end
+       end
+      end
+     end
+    end
+   end
+  end
+ end
+end
 
 local a_fished_species
 local ivs_addr
@@ -44,6 +147,8 @@ else
   return
 end
 
+
+
 local atkdef
 local spespc
 
@@ -60,9 +165,13 @@ function shiny(atkdef,spespc)
 end
 
 if target == nil then
-	print("You have not setup any species.")
+		print("You have not setup any valid species and/or your target is not fishable.")
+		print("Script stopped.")
 	return
+	else
+	print("Target Pokemon: "..target_species)
 end
+
 print("Searching for target species, please wait...")
 state = savestate.create()
 savestate.save(state)
@@ -85,7 +194,7 @@ while true do
 		--pescato qualcosa, vediamo se è la specie cercata
 		if memory.readbyte(a_fished_species) == target then
 			savestate.save(state)
-			print(string.format("Species found after "..s).." SRs! Searching for shiny, please wait...")
+			print(string.format("Species found after "..s-1).." SRs! Searching for shiny, please wait...")
 			i = 0;
 			--aspetta che finisca il dialogo
 			while i<210 do
@@ -108,7 +217,7 @@ while true do
 				atkdef = memory.readbyte(ivs_addr)
 				spespc = memory.readbyte(ivs_addr+1)
 				if shiny(atkdef,spespc) then
-					print("Shiny found!!! Script stopped. SRs: "..q)
+					print("Shiny found!!! Script stopped. SRs: "..q-1)
        					print(string.format("Atk: %d", math.floor(atkdef/16)))
         				print(string.format("Def: %d", atkdef%16))
         				print(string.format("Spc: %d", math.floor(spespc/16)))
@@ -130,5 +239,5 @@ while true do
 	end
 		
 	
-
 end
+
